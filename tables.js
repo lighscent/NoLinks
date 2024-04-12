@@ -10,6 +10,18 @@ db.getConnection()
             channel_logs VARCHAR(20) DEFAULT NULL
         )`)
 
+        conn.query(`CREATE TABLE IF NOT EXISTS bot (
+            id VARCHAR(20) PRIMARY KEY,
+            msg_count INT DEFAULT 0,
+            deleted_msg_count INT DEFAULT 0
+        )`)
+
+        conn.query(`CREATE TABLE IF NOT EXISTS stats (
+            id VARCHAR(20) PRIMARY KEY,
+            msg_count INT DEFAULT 0,
+            deleted_msg_count INT DEFAULT 0
+        )`)
+
         conn.query(`CREATE TABLE IF NOT EXISTS default_config (
             id VARCHAR(20) PRIMARY KEY,
             links JSON DEFAULT NULL

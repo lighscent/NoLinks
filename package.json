@@ -1,6 +1,6 @@
 {
   "name": "nolinks",
-  "version": "0.6",
+  "version": "0.7",
   "description": "a discord mod bot who deletes links",
   "main": "main.js",
   "scripts": {
