@@ -9,4 +9,9 @@ db.getConnection()
             module_nolinks BOOLEAN DEFAULT 0,
             channel_logs VARCHAR(20) DEFAULT NULL
         )`)
+
+        conn.query(`CREATE TABLE IF NOT EXISTS default_config (
+            id VARCHAR(20) PRIMARY KEY,
+            links JSON DEFAULT NULL
+        )`)
     })
