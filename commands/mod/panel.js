@@ -6,6 +6,7 @@ module.exports = {
     data: new djs.SlashCommandBuilder()
         .setName('panel')
         .setDescription('Shows the bot panel')
+        .setDefaultMemberPermissions(djs.PermissionFlagsBits.ManageMessages)
         .addSubcommand(subcommand => subcommand.setName('info').setDescription('Shows the bot panel'))
         .addSubcommand(subcommand => subcommand.setName('modules').setDescription('Shows the bot modules')),
 

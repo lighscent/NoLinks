@@ -1,11 +1,13 @@
 const djs = require('discord.js');
 const log = require('../logger');
 const db = require('../db.js');
+const { cli } = require('winston/lib/winston/config/index.js');
 
 module.exports = {
     name: djs.Events.MessageCreate,
     async execute(message) {
         if (message.author.bot) return;
+        const client = message.client;
 
         const guild = message.guild;
         const rowGuilds = await db.query(`SELECT * FROM guilds WHERE id = ?`, [guild.id]);
@@ -20,6 +22,8 @@ module.exports = {
             const links = rowDefault[0].links;
             const content = message.content;
 
+            const logChannel = client.channels.cache.get(rowGuilds[0].channel_logs);
+
             for (let link of links) {
                 if (content.includes(link)) {
                     await message.delete();
@@ -27,7 +31,8 @@ module.exports = {
                     await db.query(`UPDATE stats SET deleted_msg_count = deleted_msg_count + 1 WHERE id = ?`, [guild.id]);
                     await db.query(`UPDATE bot SET deleted_msg_count = deleted_msg_count + 1 WHERE id = ?`, [message.client.user.id]);
                     log.cmd(`Deleted link ${link} in ${guild.id}`);
-                    return message.channel.send(`Link ${link} deleted by the NoLinks module`);
+                    await message.channel.send(`Nice try, but you can't send links here!`).then(msg => { setTimeout(() => msg.delete(), 5000) });
+                    logChannel.send(`Link \`${message.content}\` deleted in ${guild.id} sent by ${message.author.id}`);
                 }
             }
         }

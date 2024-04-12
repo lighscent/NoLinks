@@ -6,6 +6,7 @@ module.exports = {
     data: new djs.SlashCommandBuilder()
         .setName('config')
         .setDescription('Shows the bot config')
+        .setDefaultMemberPermissions(djs.PermissionFlagsBits.ManageMessages)
         .addSubcommand(subcommand => subcommand.setName('module').setDescription('Activate or deactivate a module')
             .addStringOption(option => option.setName('modules').setDescription('Module to activate or deactivate').setRequired(true).addChoices({ name: 'NoLinks', value: 'nolinks' })))
         .addSubcommand(subcommand => subcommand.setName('channel').setDescription('Set the logs channel')
