@@ -12,9 +12,11 @@ module.exports = {
         const embed = new djs.EmbedBuilder()
             .setTitle('Uptime')
             .setDescription(`I have been online for ${uptime}`)
-            .setColor('#eec06b')
+            .setColor('#21A5CF')
             .setFooter({ text: 'Made with ❤️ by azukiov'})
-            .setTimestamp()
+            .setThumbnail(`https://imgur.com/6CNUPnz.gif`)
+            .setImage(`https://imgur.com/7MzZjtH.gif`)
+            .setTimestamp();
 
         await interaction.reply({ embeds: [embed], ephemeral: true });
     }

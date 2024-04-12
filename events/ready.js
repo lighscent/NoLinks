@@ -2,6 +2,7 @@ const djs = require('discord.js');
 const log = require('../logger');
 const db = require('../db.js');
 const package = require('../package.json');
+const wait = require('util').promisify(setTimeout);
 
 module.exports = {
     name: djs.Events.ClientReady,
@@ -9,9 +10,11 @@ module.exports = {
     execute(client) {
         try {
             try {
-                require('../tables.js');
+                require('../tables.js')
+                wait(3000)
+                require('../entry.js')
             } catch (err) {
-                log.error(`Error creating tables for db_main` + err);
+                log.error(err);
             }
 
             const status = [
