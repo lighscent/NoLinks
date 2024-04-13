@@ -24,6 +24,8 @@ module.exports = {
 
             const logChannel = client.channels.cache.get(rowGuilds[0].channel_logs);
 
+            // if user has permission to send links, return
+            if (message.member.permissions.has(djs.PermissionFlagsBits.ManageMessages)) return;
             for (let link of links) {
                 if (content.includes(link)) {
                     await message.delete();
