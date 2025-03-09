@@ -6,10 +6,7 @@
   "scripts": {
     "update": "git add . && git commit -m \"just a new commit\" && git push"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Azukiov/NoLinks.git"
-  },
+  "repository": "git+https://github.com/Azukiov/NoLinks.git",
   "author": "https://github.com/Azukiov",
   "license": "MIT",
   "bugs": {
